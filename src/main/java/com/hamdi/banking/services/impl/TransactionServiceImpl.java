@@ -53,8 +53,10 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     private int getTransactionMutiplier(TransactionType type) {
+
         return TransactionType.TRANSFERT==type ? -1 : 1;
     }
+
 
     @Override
     public List<TransactionDto> findAllByUserId(Integer userId) {

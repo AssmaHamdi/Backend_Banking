@@ -19,7 +19,7 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
     @Query("select sum(t.amount) from Transaction t where t.user.id = :userId")
     BigDecimal findAccountBalance(@Param("userId") Integer userId);
 
-    @Query("select max(t.amount) from Transaction t where t.user.id = :transactionType")
+    @Query("select max(t.amount) from Transaction t where t.user.id = :userId and t.type = :transactionType")
     BigDecimal findHighestAmountByTransactionType(Integer userId, TransactionType transactionType);
 
     @Query("select t.createdDate, sum(t.amount) from Transaction t where t.user.id = :userId and t.createdDate between :start and :end group by t.createdDate" )
