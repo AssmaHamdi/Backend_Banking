@@ -5,7 +5,7 @@ import com.hamdi.banking.models.Address;
 import com.hamdi.banking.repositories.AddressRepository;
 import com.hamdi.banking.services.AddressService;
 import com.hamdi.banking.validators.ObjectsValidator;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

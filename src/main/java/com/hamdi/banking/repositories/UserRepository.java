@@ -1,12 +1,13 @@
 package com.hamdi.banking.repositories;
 
 import com.hamdi.banking.models.User;
-import jakarta.persistence.criteria.From;
+import javax.persistence.criteria.From;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
@@ -39,5 +40,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     // requet native
    // @Query(value = "select * from _user u inner join Account a on u.d = a.id_user and a.iban = :iban", nativeQuery= true)
     // List<User> searchByIbanNative(String iban);
+
+    Optional<User> findByEmail(String email);
 
 }

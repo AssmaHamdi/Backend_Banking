@@ -1,5 +1,6 @@
 package com.hamdi.banking.services.impl;
 
+import com.hamdi.banking.dto.TransactionSumDetail;
 import com.hamdi.banking.models.TransactionType;
 import com.hamdi.banking.repositories.TransactionRepository;
 import com.hamdi.banking.services.StatisticsService;
@@ -10,7 +11,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.Map;
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     private final TransactionRepository transactionRepository;
     @Override
-    public Map<LocalDate, BigDecimal> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId) {
+    public List<TransactionSumDetail> findSumTransactionByDate(LocalDate startDate, LocalDate endDate, Integer userId) {
 
         LocalDateTime start = LocalDateTime.of(startDate, LocalTime.of(0,0,0));
         LocalDateTime end = LocalDateTime.of(endDate, LocalTime.of(23,59,59));

@@ -2,10 +2,13 @@ package com.hamdi.banking.handlers;
 
 import com.hamdi.banking.exceptions.ObjectValidationException;
 import com.hamdi.banking.exceptions.OperationNonPermittedException;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -45,7 +48,7 @@ public class GlobalExceptionHandler {
                 .body(representation);
     }
 
-   /* @ExceptionHandler(DataIntegrityViolationException.class)
+    @ExceptionHandler(DataIntegrityViolationException.class)
     public ResponseEntity<ExceptionRepresentation> handleException() {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
                 .errorMessage("A user already exists with the provided Email")
@@ -65,6 +68,8 @@ public class GlobalExceptionHandler {
                 .body(representation);
     }
 
+
+
     @ExceptionHandler(BadCredentialsException.class)
     public ResponseEntity<ExceptionRepresentation> handleBadCredentialsException() {
         ExceptionRepresentation representation = ExceptionRepresentation.builder()
@@ -73,6 +78,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.FORBIDDEN)
                 .body(representation);
-    }*/
+    }
 
 }

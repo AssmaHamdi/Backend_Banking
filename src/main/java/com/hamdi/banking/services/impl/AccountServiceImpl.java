@@ -6,7 +6,7 @@ import com.hamdi.banking.models.Account;
 import com.hamdi.banking.repositories.AccountRepository;
 import com.hamdi.banking.services.AccountService;
 import com.hamdi.banking.validators.ObjectsValidator;
-import jakarta.persistence.EntityNotFoundException;
+import javax.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.iban4j.CountryCode;
 import org.iban4j.Iban;
@@ -36,7 +36,7 @@ public class AccountServiceImpl implements AccountService {
         validator.validate(dto);
         Account account = AccountDto.toEntity(dto);
         boolean userHasAlreadyAnAccount = repository.findByUserId(account.getUser().getId()).isPresent();
-        if (userHasAlreadyAnAccount) {
+        if (userHasAlreadyAnAccount && account.getUser().isActive()) {
             throw new OperationNonPermittedException(
                     "the select user has already an active account",
                     "create account ",

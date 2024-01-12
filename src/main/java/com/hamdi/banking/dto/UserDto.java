@@ -1,10 +1,12 @@
 package com.hamdi.banking.dto;
 
+import com.hamdi.banking.models.Role;
 import com.hamdi.banking.models.User;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.*;
 
 @Getter
@@ -30,14 +32,13 @@ public class UserDto {
     @NotBlank
 
 
+    @Email(message = "L'email n'est conforme")
     private String email;
 
     @NotNull
     @NotEmpty
     @NotBlank
-    @Size(min =5, max=10)
-
-
+    @Size(min =5, max=10, message = "le size de password doit etre entre 5 et 10")
     private String password;
 
     public static UserDto fromEntity(User user) {
@@ -66,5 +67,9 @@ public class UserDto {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
+    }
+
+    public Role getRole() {
+        return new Role();
     }
 }
